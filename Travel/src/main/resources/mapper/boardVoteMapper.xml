@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 // EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.main.board.BoardVoteMapper">
+	<insert id="insertVoteById" parameterType="com.travel.main.board.BoardVote">
+		insert into board_vote (board_id, username) 
+			values (#{board_id}, #{username});
+	</insert>
+	
+	<select id="cntVoteById" resultType="java.lang.Integer">
+		SELECT count(*) 
+		FROM board_vote 
+		WHERE board_id = #{id};
+	</select>
+
+	<select id="selectBoardVoteById" resultType="com.travel.main.board.BoardVote">
+		SELECT * 
+		FROM board_vote 
+		WHERE board_id = #{board_id} 
+		<if test="username != null">
+        	AND username = #{username}
+    	</if>
+	</select>
+	
+	<update id="updateCntVote" parameterType="com.travel.main.board.BoardVote">
+		update board set vote = ( 
+		select count(*) from board_vote where id = #{board_id}
+		) where id = #{board_id};
+	</update>
+</mapper>

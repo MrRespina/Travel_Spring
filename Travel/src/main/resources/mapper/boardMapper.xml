@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 // EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.main.board.BoardMapper">
+
+	<select id="countAllBoard" resultType="java.lang.Integer">
+		SELECT count(*) FROM board WHERE ${index} LIKE '%${text}%';;
+	</select>
+
+	<select id="selectAllBoard"
+		resultType="com.travel.main.board.Board">
+		SELECT * FROM board WHERE ${index} LIKE '%${text}%';
+	</select>
+
+	<select id="selectLimtBoard"
+		resultType="com.travel.main.board.Board">
+		SELECT *
+		FROM board
+		ORDER BY createDate DESC, id
+		LIMIT #{pageSize} OFFSET #{offset};
+	</select>
+
+	<select id="selectBoardById"
+		resultType="com.travel.main.board.Board">
+		SELECT * FROM board WHERE id=#{id};
+	</select>
+	
+	<select id="searchText" resultType="com.travel.main.board.Board">
+		SELECT *
+		FROM board
+		WHERE ${index} LIKE '%${text}%'
+		ORDER BY createDate DESC, id
+		LIMIT #{pageSize} OFFSET #{offset};
+	</select>
+	
+	<insert id="insertBoard"
+		parameterType="com.travel.main.board.Board">
+		insert into board (subject, content, author_id) values
+		(#{subject} , #{content}, #{author_id});
+	</insert>
+	
+	<update id="updateBoard" parameterType="com.travel.main.board.Board">
+		UPDATE board 
+		set subject=#{subject}, content=#{content}, modifyDate=#{modifyDate}
+		where id = #{id};
+	</update>
+	
+	<delete id="deleteBoard" parameterType="com.travel.main.board.Board">
+		DELETE FROM board WHERE id = #{id};
+	</delete>
+</mapper>
+

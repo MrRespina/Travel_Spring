@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/show_tickets.css}" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="category" style="width:100%;">
+		<nav th:replace="~{navbar :: navbarFragment}"></nav>
+	</div>
+	<div class="getAirDiv">
+		<!-- 
+		<table class="getAirTbl">
+	 		<tr class="getAirTr">
+	 			<td class="getAirTd" colSpan={1}>예약자명</td>
+            	<td class="getAirTd" colSpan={1}>항공사</td>
+                <td class="getAirTd" colSpan={1}>출발 공항</td>
+                <td class="getAirTd" colSpan={1}>출발 시간</td>
+                <td class="getAirTd" colSpan={1}>도착 공항</td>
+                <td class="getAirTd" colSpan={1}>도착 시간</td>
+                <td class="getAirTd" colSpan={1}>경유/직항</td>
+                <td class="getAirTd" colSpan={1}>가격</td>
+                <td class="getAirTd" colSpan={1}></td>
+            </tr>
+            <div th:each="data : ${tickets}">
+            	<form th:action="@{/ticket/deleteMyTicket}">
+            		<tr class="getAirTr" key="${date.id}">            
+            			<input type="hidden" id="id" name="id" th:value="${data.id}">           
+            			<td class="getAirTd" colSpan={1} th:text="${data.username}"></td>
+                		<td class="getAirTd" colSpan={1} th:text="${data.company}"></td>
+                		<td class="getAirTd" colSpan={1} th:text="${data.toLocation}"></td>
+                		<td class="getAirTd" colSpan={1} th:text="${data.inTime}"></td>
+                		<td class="getAirTd" colSpan={1} th:text="${data.goLocation}"></td>
+                		<td class="getAirTd" colSpan={1} th:text="${data.outTime}"></td>
+                		<td class="getAirTd" colSpan={1} th:text="${data.layover}"></td>
+                		<td class="getAirTd" colSpan={1} th:text="${data.price}"></td>
+                		<td class="getAirTd" colSpan={1}>
+                			<button class="deleteButton">삭제하기</button>
+                		</td>
+             		</tr> 
+             	</form>   
+             </div>              
+        </table>
+         -->
+        	<div style="width:1236px;height:250px;" th:each="data : ${tickets}" key="${date.id}">
+            	<form th:action="@{/ticket/deleteMyTicket}">
+            		<input type="hidden" id="id" name="id" th:value="${data.id}">  
+            		<div style="width:400px;float:left;">
+            			<div class="getAirTd" th:text="${data.username}"></div>
+            			<div class="getAirTd" th:text="${data.company}"></div>
+            		</div>
+            		<div style="width:400px;float:left;">
+            			<div class="getAirTd" th:text="${data.toLocation} 
+             			+ ' ' + ${data.inTime} + ' -> ' + ${data.goLocation} + ' ' + ${data.outTime}">
+             			</div>           			
+             			<div class="getAirTd" th:text="${data.layover} + ' / ' + ${data.price}"></div>		
+            		</div>	 
+                	<div class="getAirTd" style="width:150px;height:63.2px;float:left;" align="center">
+             			<button class="deleteButton">삭제하기</button>
+             		</div>                   	
+             		
+             	</form> 
+             </div>     	
+	</div>
+</body>
+</html>

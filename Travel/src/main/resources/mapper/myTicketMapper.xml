@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 // EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.main.ticket.MyTicketMapper">
+	<select id="findMyTickets" parameterType="com.travel.main.ticket.MyTicket" 
+	resultType="com.travel.main.ticket.MyTicket">
+		SELECT * FROM tickets where username=#{username}
+	</select>
+	<delete id="deleteMyTickets" parameterType="Integer">
+		DELETE FROM tickets WHERE id=#{id}
+	</delete>
+</mapper>

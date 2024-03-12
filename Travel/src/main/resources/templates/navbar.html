@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nav Bar</title>
+<!-- navBar 안에 있는 각 링크에 대한 클릭 이벤트 추가 -->
+</head>
+<body>
+<nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">Travel</a>
+		<div sec:authorize="isAuthenticated()" th:text="${r}"></div>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+		data-bs-target="#navbarSupportedContent" aria-expanded="false"
+		aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navMyPage" 
+		style="width:100%;" sec:authorize="isAuthenticated()"
+			th:if="${notSlickCheck==null}">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width:100%;">
+				<li class="nav-item">
+					<a id="" class="navbar-brand"></a>			
+				</li>
+				<li class="nav-item">
+					<a id="firstLink" class="navbar-brand" style="cursor:pointer;">게시판</a>			
+				</li>
+				<li class="nav-item">
+					<a id="secondLink" class="navbar-brand" style="cursor:pointer;">항공권예약</a>			
+				</li>
+				<li class="nav-item">
+					<a id="thirdLink" class="navbar-brand" style="cursor:pointer;">여행가이드</a>			
+				</li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" style="width:100%;">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width:100%;">
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAnonymous()" 
+					th:href="@{/user/login}">로그인</a>			
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" 
+					th:href="@{/user/modify}">내정보</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" 
+					th:href="@{/ticket/searchMyTickets}">내 예약 정보</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAuthenticated()" 
+					th:href="@{/user/logout}">로그아웃</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" sec:authorize="isAnonymous()" 
+					th:href="@{/user/signup}">회원가입</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+    $(document).ready(function() {
+        // 첫 번째 링크 클릭 시
+        $('#firstLink').click(function() {
+            $('.dragdiv').slick('slickGoTo', 0); // 0부터 시작하는 인덱스
+        });
+
+        // 두 번째 링크 클릭 시
+        $('#secondLink').click(function() {
+            $('.dragdiv').slick('slickGoTo', 1); // 1번째 슬라이드로 이동
+        });
+
+        // 세 번째 링크 클릭 시
+        $('#thirdLink').click(function() {
+            $('.dragdiv').slick('slickGoTo', 2); // 2번째 슬라이드로 이동
+        });
+
+        // 그 외의 링크에 대해서도 마찬가지로 처리
+    });
+	</script>
+</nav>
+</body>
+</html>
