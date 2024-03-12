@@ -66,9 +66,9 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body>
+<body style="height:762px;">
 
-    <div layout:fragment="content" class="dragdiv" style="background-color: #BFE4FF;">
+    <div layout:fragment="content" class="dragdiv" style="background-color: #BFE4FF;height:666px;">
     	<!-- 로그인 유/무 th:if로 확인. 
     	navbar에서 사용하는 spring security 내부 메소드인 sec:authorize 로도 로그인 유/무 확인 가능.
     	로그인 안되어있을 때 나오는 페이지들 -->
@@ -83,7 +83,7 @@ $(document).ready(function(){
     	</div>
         <div class="reserveTicket" th:if="${r}!=null">      	
         <!-- 외부 페이지(React 항공권 예약 페이지) 불러오기, 불러오며 username을 URL param으로 넘겨줌 -->
-        	<iframe class="myReactPage" th:src="@{'http://localhost:3000/?username=' + ${r}}" width="100%" height="600vh">
+        	<iframe class="myReactPage" th:src="@{'http://localhost:3000/?name=' + ${r}}" width="100%" height="600vh">
         	</iframe>
         </div>
         <div class="getYoutubeVideo" th:if="${r}!=null">

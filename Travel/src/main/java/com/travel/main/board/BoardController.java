@@ -114,7 +114,7 @@ public class BoardController {
 			,@PathVariable("id") Integer id, Principal principal,Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("noNavbar",true);
-			return "board_from";
+			return "board_form";
 		}
 		
 		Board board = this.boardService.getBoard(id);
