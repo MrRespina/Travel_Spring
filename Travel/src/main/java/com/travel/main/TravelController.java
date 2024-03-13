@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001" }) 
+@CrossOrigin(origins = {"http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:3000",
+		"http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:3001" }) 
 @RequiredArgsConstructor
 @Controller
 public class TravelController {
