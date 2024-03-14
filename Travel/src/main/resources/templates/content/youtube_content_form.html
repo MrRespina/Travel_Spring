@@ -63,14 +63,14 @@ $(document).ready(function(){
 		<div style="width: 50%;height:800px;float: right;">
     		<div class="search-box" style="height:800px;margin:10px;">			
 				<div class="flex flex-col items-center space-y-4" align="center" 
-				style="height:800px;border:rgba(0,0,0,0.1) solid 3px;">
+				style="height:780px;border:rgba(0,0,0,0.1) solid 3px;">
 					<form action="/api/getYoutube">
         				<img src="/image/backpacker.jpg" width="400px" height="300px" alt="Logo" class="h-20" style="margin-top: 10px;">
         				<div class="text-center" align="center">
-          					<h1 class="text-2xl font-bold" style="font-family: 'Roboto', sans-serif;">어디로</h1> <br>
-          					<h1 class="text-6xl font-bold travel" style="font-family: 'Roboto', sans-serif;">여행 </h1><br>
-          					<h1 class="text-2xl font-bold" style="font-family: 'Roboto', sans-serif;">가시게요?</h1>
-          					<div class="mt-4" style="margin-bottom: 20px;">
+          					<h1 class="text-2xl font-bold" style="font-family: 'Roboto', sans-serif;margin:0px;">어디로</h1> <br>
+          					<h1 class="text-6xl font-bold travel" style="font-family: 'Roboto', sans-serif;margin:0px;">여행 </h1><br>
+          					<h1 class="text-2xl font-bold" style="font-family: 'Roboto', sans-serif;margin:0px;">가시게요?</h1>
+          					<div class="mt-4" style="margin-bottom: 10px;">
             					<input type="text" name="cityName" placeholder="여행지 입력 (영문)" 
             					class="cityNameInput border-2 border-gray-300 p-4 rounded-lg text-lg w-96"
             					>				
@@ -87,28 +87,44 @@ $(document).ready(function(){
     	height:800px;
     	float: left;">	
     		<div class="contents" style="margin:10px;border:rgba(0,0,0,0.1) solid 3px;height:800px;">			 
-			<div class="c0" th:if="${status != null}" align="center" style="width:100%;">
+			<div class="c0" th:if="${status != null}" align="center" style="width:710px;">
 				<h1 style="white-space:nowrap;" th:text="${status}"></h1>
 			</div>	
 			
-			<div class="c1" th:if="${video0 != null}" align="center" style="width:100%;">
-				<iframe width="100%" height="550px;"
+			<div class="c1" th:if="${video0 != null}" align="center" style="width:710px;">
+				<iframe width="100%;" height="550px;"
 					th:src="|https://www.youtube.com/embed/${video0}|" 
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
 					allowfullscreen>
 				</iframe>
 			</div>
-			<div class="c2" th:if="${video1 != null}" align="center" style="width:100%;">
-				<iframe width="100%" height="550px;" th:src="|https://www.youtube.com/embed/${video1}|" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<div class="c2" th:if="${video1 != null}" align="center" style="width:710px;">
+				<iframe width="100%;" height="550px;" 
+					th:src="|https://www.youtube.com/embed/${video1}|" 
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+					allowfullscreen>
+				</iframe>
 			</div>
-			<div class="c3" th:if="${video2 != null}" align="center" style="width:100%;">
-				<iframe width="100%" height="550px;" th:src="|https://www.youtube.com/embed/${video2}|" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>		
+			<div class="c3" th:if="${video2 != null}" align="center" style="width:710px;">
+				<iframe width="100%;" height="550px;" 
+					th:src="|https://www.youtube.com/embed/${video2}|" 
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+					allowfullscreen>
+				</iframe>		
 			</div>
-			<div class="c4" th:if="${video3 != null}" align="center" style="width:100%;">
-				<iframe width="100%" height="550px;" th:src="|https://www.youtube.com/embed/${video3}|"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>		
+			<div class="c4" th:if="${video3 != null}" align="center" style="width:710px;">
+				<iframe width="100%;" height="550px;" 
+					th:src="|https://www.youtube.com/embed/${video3}|"  
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+					allowfullscreen>
+				</iframe>		
 			</div>
-			<div class="c5" th:if="${video4 != null}" align="center" style="width:100%;">
-				<iframe width="100%" height="550px;" th:src="|https://www.youtube.com/embed/${video4}|" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<div class="c5" th:if="${video4 != null}" align="center" style="width:710px;">
+				<iframe width="100%;" height="550px;" 
+					th:src="|https://www.youtube.com/embed/${video4}|" 
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+					allowfullscreen>
+				</iframe>
 			</div>
 		</div>	 
 		</div>	
