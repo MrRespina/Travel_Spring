@@ -59,9 +59,9 @@ $(document).ready(function(){
 </head>
 <body style="background-color: rgba(255, 255, 255, 0.7);">
 	<div id="youtubeContent flex space-y-24">
-		<div style="width: 50%;height:550px;float: right; /* 우측 배치 */">
+		<div style="width: 50%;height:800px;float: right; /* 우측 배치 */">
     		<div class="search-box" style="height:550px;margin-top: 40px;">			
-				<div class="flex flex-col items-center space-y-4" align="center" style="height:550px;">
+				<div class="flex flex-col items-center space-y-4" align="center" style="height:800px;">
 					<form action="/api/getYoutube">
         				<img src="/image/backpacker.jpg" width="400px" height="300px" alt="Logo" class="h-20">
         				<div class="text-center" align="center">
@@ -81,6 +81,7 @@ $(document).ready(function(){
 		<div class="contents" align="center" style="
     	position: relative;
     	width: 50%;
+    	height:800px;
     	float: left; /* 좌측 배치 */">	
 			<!-- status = googleController에서 받은 값이 있을 때. -->
 			<div class="c0" th:if="${status != null}" align="center">
