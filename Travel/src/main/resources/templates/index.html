@@ -66,9 +66,9 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body style="height:762px;">
+<body style="height:953px;">
 
-    <div layout:fragment="content" class="dragdiv" style="background-color: #BFE4FF;height:666px;">
+    <div layout:fragment="content" class="dragdiv" style="background-color: #BFE4FF;height:856px;">
     	<!-- 로그인 유/무 th:if로 확인. 
     	navbar에서 사용하는 spring security 내부 메소드인 sec:authorize 로도 로그인 유/무 확인 가능.
     	로그인 안되어있을 때 나오는 페이지들 -->
@@ -78,20 +78,28 @@ $(document).ready(function(){
     	
     	<!-- 로그인이 되었을 때 나오는 페이지들 -->
     	<div class="board" th:if="${r}!=null">
-    		<iframe class="myReactPage" src="http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:8081/board/list" width="100%" height="600vh">
+    		<iframe class="myReactPage" src="http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:8081/board/list" width="100%" height="760px">
         	</iframe>
+        	<!-- <iframe class="myReactPage" src="http://localhost:8081/board/list" width="100%" height="800px">
+        	</iframe>
+        	 -->
     	</div>
         <div class="reserveTicket" th:if="${r}!=null">      	
         <!-- 외부 페이지(React 항공권 예약 페이지) 불러오기, 불러오며 username을 URL param으로 넘겨줌 -->
-        	<iframe class="myReactPage" th:src="@{'http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:3000/?name=' + ${r}}" width="100%" height="600vh">
-        	</iframe>
+        	<iframe class="myReactPage" th:src="@{'http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:3000/?name=' + ${r}}" width="100%" height="760px">
+        	</iframe> 
+        	<!-- <iframe class="myReactPage" th:src="@{'http://localhost:3000/?name=' + ${r}}" width="100%" height="800px">
+        	</iframe>-->
         </div>
         <div class="getYoutubeVideo" th:if="${r}!=null">
         <!-- 위의 JavaScript처럼 div class를 정해 load해주지 않은 이유는,
          만약 그렇게 해주게 된다면, youtube_content_form에서 사용하는 slick이 동작하지 않음.
          그래서 iframe으로 외부 페이지를 끌어오는 형태로 사용함. -->
-        	<iframe class="myPage" src="http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:8081/youtube_content_form.html" width="100%" height="600vh">
+        	<iframe class="myPage" src="http://ec2-52-78-155-140.ap-northeast-2.compute.amazonaws.com:8081/youtube_content_form.html" width="100%" height="760px">
         	</iframe>
+        	<!-- 
+        	<iframe class="myPage" src="http://localhost:8081/youtube_content_form.html" width="100%" height="800px">
+        	</iframe> -->
         </div>      
     </div>
     
