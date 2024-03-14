@@ -59,11 +59,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body style="background-color: rgba(255, 255, 255, 0.7);">
-	<div id="youtubeContent flex space-y-24" style="height:800px;">
-		<div style="width: 50%;height:800px;float: right;">
-    		<div class="search-box" style="height:800px;margin:10px;">			
+	<div id="youtubeContent flex space-y-24" style="height:780px;">
+		<div style="width: 50%;height:780px;float: right;">
+    		<div class="search-box" style="height:780px;margin:10px;">			
 				<div class="flex flex-col items-center space-y-4" align="center" 
-				style="height:780px;border:rgba(0,0,0,0.1) solid 3px;">
+				style="height:760px;border:rgba(0,0,0,0.1) solid 3px;">
 					<form action="/api/getYoutube">
         				<img src="/image/backpacker.jpg" width="400px" height="300px" alt="Logo" class="h-20" style="margin-top: 10px;">
         				<div class="text-center" align="center">
@@ -84,10 +84,10 @@ $(document).ready(function(){
 		<div align="center" style="
     	position: relative;
     	width: 50%;
-    	height:800px;
+    	height:780px;
     	float: left;">	
-    		<div style="margin:10px;border:rgba(0,0,0,0.1) solid 3px;height:800px;">
-    		<div class="contents" style="height:768px;">			 
+    		<div style="margin:10px;border:rgba(0,0,0,0.1) solid 3px;height:780px;">
+    		<div class="contents" style="height:748px;">			 
 			<div class="c0" th:if="${status != null}" align="center" style="width:710px;">
 				<h1 style="white-space:nowrap;" th:text="${status}"></h1>
 			</div>				
@@ -128,7 +128,7 @@ $(document).ready(function(){
 			</div>
 		</div>	 
 		</div>	
-				
+	</div>
 	</div>
 </body>
 </html>
