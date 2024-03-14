@@ -23,9 +23,11 @@ html{
 
 .cityNameInput{
 	
-	height:27.2px;
-	padding-top:1px;
+	height:60px;
 	text-align: center;
+	margin-top:10px;
+	margin-bottom: 10px;
+	font-size: 40px;
 	
 }
 
