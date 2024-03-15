@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.main.place.PlaceMapper">
+
+	<insert id="insertTest" parameterType="com.travel.main.place.Place">
+		insert into place (image, placename, f_id, category, address, latitude, longitude) 
+			values (#{image}, #{placename}, #{f_id}, #{category}, #{address}, #{latitude}, #{longitude})
+	</insert>
+	
+	<select id="getAllTest" resultType="com.travel.main.place.Place">
+		select * from place
+	</select>
+	
+	<select id="searchTestName" resultType="com.travel.main.place.Place">
+		select * from place where placename like concat('%', #{placename}, '%')
+	</select>
+	
+	<select id="searchTestCategory" resultType="com.travel.main.place.Place">
+		select * from place where category like concat('%', #{category}, '%')
+	</select>
+	
+	<delete id="delPlace" parameterType="int">
+		delete from place where f_id = #{value}
+	</delete>
+	
+	<delete id="delPlaceWithId" parameterType="int">
+		delete from place where id = #{value}
+	</delete>
+	
+	<delete id="delAll">
+		delete from place
+	</delete>
+		
+	
+</mapper>

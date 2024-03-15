@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional styles if needed */
+    </style>
+</head>
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function() {
+    // 현재 URL의 파라미터를 가져오는 함수
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    // struct 파라미터 값을 가져옴
+    var struct = getUrlParameter("struct");
+    
+    // struct 값에 따라 버튼을 보여주거나 숨김
+    if (struct === "1") {
+        document.getElementById("formHL").style.visibility = "visible";
+        document.getElementById("formRt").style.visibility = "visible";
+        document.getElementById("formCf").style.visibility = "visible";
+        document.getElementById("formHL").style.display = "inline";
+        document.getElementById("formRt").style.display = "inline";
+        document.getElementById("formCf").style.display = "inline";
+    } else if (struct === "2") {
+    	document.getElementById("formHt").style.visibility = "visible";
+        document.getElementById("formGh").style.visibility = "visible";
+        document.getElementById("formRh").style.visibility = "visible";
+        document.getElementById("formHt").style.display = "inline";
+        document.getElementById("formGh").style.display = "inline";
+        document.getElementById("formRh").style.display = "inline";
+    } else if (struct === "3") {
+    	document.getElementById("formPm").style.visibility = "visible";
+        document.getElementById("formMk").style.visibility = "visible";
+        document.getElementById("formPk").style.visibility = "visible";
+        document.getElementById("formPm").style.display = "inline";
+        document.getElementById("formMk").style.display = "inline";
+        document.getElementById("formPk").style.display = "inline";
+    }
+    
+    
+});
+</script>
+<body class="bg-gray-100">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="#" class="text-lg font-semibold">Travel Planner</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex space-x-4">
+                        <!-- Search bar -->
+                        <div class="relative">
+                            <input type="text" class="h-10 w-56 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search destinations...">
+                            <div class="absolute top-2 right-2">
+                                <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+                            </div>
+                        </div>
+                        <!-- Links -->
+                        <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Point Page</a>
+                        <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Search Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex flex-col md:flex-row">
+        <!-- Steps Sidebar -->
+        <div class="w-full md:w-1/4 bg-white p-4">
+            <div class="flex flex-col space-y-2">
+            	
+	                <a href="http://localhost:3001/" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">돌아가기</a>
+	                
+	                <input type="hidden" name="place" value="place">
+	                <a th:href="@{/place/startLocation(id=${id}, structs=${struct})}" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">장소 선택</a>
+	                
+	                <input type="hidden" name="lodging" value="lodging">
+	                <a th:href="@{/place/startLodging(id=${id}, structs=${struct})}" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">숙소 선택</a>
+	                
+	                <input type="hidden" name="convenience" value="convenience">
+                	<a th:href="@{/place/startConvenience(id=${id}, structs=${struct})}"  class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">편의시설 선택</a>
+            </div>
+        </div>
+
+        <!-- Form Content -->
+        <div class="w-full md:w-3/4 p-4">
+            <div class="bg-white p-4 rounded-lg shadow-md" style="height:100%;">
+                <h2 class="text-xl font-semibold mb-4">장소 찾기</h2>
+                <div class="mb-4">
+                    <label for="date" class="block text-gray-700 text-sm font-bold mb-2">검색</label>
+                    <form action="/place/searchByName"  method="GET">
+						<div class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">
+							<input type="hidden" name="struct" th:value="${struct}">
+							<input type="text" name="placename" id="placename">
+							<input type="submit" value="찾기">
+						</div>
+					</form>
+                </div>
+                <div class="mb-4">
+                    <label for="location"class="block text-gray-700 text-sm font-bold mb-2">종류</label>
+                    
+					<form action="/place/searchByCategory"  method="GET" style="display: inline;">
+						<input type="hidden" name="category" value="">
+						<input type="hidden" name="struct" value="1">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">전체</button>
+					</form>
+					
+					<form id="formHL" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="Historical Landmark">
+						<input type="hidden" name="struct" value="1">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">명소</button>
+					</form>
+					<form id="formRt" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="Restaurant">
+						<input type="hidden" name="struct" value="1">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">식당</button>
+					</form>
+					<form id="formCf" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="Cafe">
+						<input type="hidden" name="struct" value="1">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">카페</button>
+					</form>
+					
+					<form id="formHt" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="Hotel">
+						<input type="hidden" name="struct" value="2">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">호텔</button>
+					</form>
+					<form id="formGh" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="Guest_house">
+						<input type="hidden" name="struct" value="2">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">게스트하우스</button>
+					</form>
+					<form id="formRh" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="Resort_hotel">
+						<input type="hidden" name="struct" value="2">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">리조트</button>
+					</form>
+					
+					<form id="formPm" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="Pharmacy">
+						<input type="hidden" name="struct" value="3">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">약국</button>
+					</form>
+					<form id="formMk" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="market">
+						<input type="hidden" name="struct" value="3">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">마켓</button>
+					</form>
+					<form id="formPk" action="/place/searchByCategory"  method="GET" style="display: none;visibility: hidden;">
+						<input type="hidden" name="category" value="parking">
+						<input type="hidden" name="struct" value="3">
+						<button class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">주차장</button>
+					</form>
+                </div>
+                
+                <!-- 여기가 메인쿼리 -->
+                
+                <div class="mb-4" style="width:400px;height:100%;float:left;">
+                    <label for="results" class="block text-gray-700 text-sm font-bold mb-2">검색결과</label>
+						<div>
+					    <!-- 데이터 레코드를 반복하여 처리하는 반복문 -->
+					    <div th:each="data : ${testDBData}" class="data-row">
+					    	<!-- 데이터를 추가하기 위한 form 요소 -->
+					        <form action="/save/insert" method="GET">
+					        	<!-- 데이터 항목을 각각의 input 태그로 설정 -->
+					        	<input type="hidden" name="struct" th:value="${struct}">
+					        	<input type="hidden" name="id" th:value="${data.id}">
+					        	<input type="hidden" name="f_id" th:value="${data.f_id}">
+					            <input type="hidden" name="image" th:value="${data.image}">
+					            <input type="hidden" name="placename" th:value="${data.placename}">
+					            <input type="hidden" name="category" th:value="${data.category}">
+					            <input type="hidden" name="address" th:value="${data.address}">
+					            <input type="hidden" name="latitude" th:value="${data.latitude}">
+					            <input type="hidden" name="longitude" th:value="${data.longitude}">
+					            
+					            <!-- 이미지 -->
+					            <div class="data-cell">
+					            	<img style="width:80px;height:80px;" th:src="${data.image}"
+					                                onerror="this.src='/errImg.jpg'; this.onerror=null;">
+					            </div>
+					            
+					            <!-- 이름 -->
+					            <div class="data-cell">
+					                <span th:text="${#strings.length(data.placename) &gt; 10} ? ${#strings.substring(data.placename, 0, 10)} + '...' : ${data.placename}"
+					                      th:title="${data.placename}"></span>
+					            </div>
+					            
+					            <!-- 카테고리 -->
+					            <div class="data-cell" th:text="${data.category}"></div>
+					            
+					            <!-- 주소 -->
+					            <div class="data-cell">
+					                <span th:text="${#strings.length(data.address) &gt; 20} ? ${#strings.substring(data.address, 0, 20)} + '...' : ${data.address}"
+					                      th:title="${data.address}"></span>
+					            </div>
+					            
+					            <!-- 위도 -->
+					            <div class="data-cell" th:text="${data.latitude}"></div>
+					            
+					            <!-- 경도 -->
+					            <div class="data-cell" th:text="${data.longitude}"></div>
+					            
+					            <!-- 저장 버튼 -->
+					            <div class="data-cell"><button type="submit">저장</button></div>
+					      </form>
+					  	</div>
+						</div>
+                </div>
+                
+                <!-- 여기가 서브쿼리 -->
+                
+                <div class="mb-4" style="width:400px;height:100%;float:right;">
+                    <label for="results" class="block text-gray-700 text-sm font-bold mb-2">저장공간</label>
+					<div>
+			    	<!-- 데이터 레코드를 반복하여 처리하는 반복문 -->
+			    	<div th:each="data : ${select}" class="data-row">
+			        <!-- 데이터를 삭제하기 위한 form 요소 -->
+			        <form action="/save/delete">
+			            <!-- 데이터 항목을 각각의 input 태그로 설정 -->
+			            <input type="hidden" name="struct" th:value="${struct}">
+			            <input type="hidden" name="id" th:value="${data.id}">
+			            <input type="hidden" name="photo" th:value="${data.photo}">
+			            <input type="hidden" name="name" th:value="${data.name}">
+			            <input type="hidden" name="category" th:value="${data.category}">
+			            <input type="hidden" name="addr" th:value="${data.addr}">
+			            <input type="hidden" name="lat" th:value="${data.lat}">
+			            <input type="hidden" name="lng" th:value="${data.lng}">
+			            
+			            <!-- 이미지 -->
+			            <div class="data-item">
+			                <img style="width:80px;height:80px;" th:src="${data.photo}"
+			                    onerror="this.src='/errImg.jpg'; this.onerror=null;">
+			            </div>
+			            
+			            <!-- 이름 -->
+			            <div class="data-item" th:text="${#strings.length(data.name) > 10} ? ${#strings.substring(data.name, 0, 10)} + '...' : ${data.name}" 
+			                th:title="${data.name}"></div>
+			            
+			            <!-- 카테고리 -->
+			            <div class="data-item" th:text="${data.category}"></div>
+			            
+			            <!-- 주소 -->
+			            <div class="data-item" th:text="${#strings.length(data.addr) > 20} ? ${#strings.substring(data.addr, 0, 20)} + '...' : ${data.addr}"
+			                th:title="${data.addr}"></div>
+			            
+			            <!-- 위도 -->
+			            <div class="data-item" th:text="${data.lat}"></div>
+			            
+			            <!-- 경도 -->
+			            <div class="data-item" th:text="${data.lng}"></div>
+			            
+			            <!-- 삭제 버튼 -->
+			            <div class="data-item">
+			                <button type="submit">삭제</button>
+			            </div>
+			        </form>
+			    	</div>
+					</div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps Placeholder -->
+    <div class="w-full h-64 bg-gray-300 mt-4 rounded-lg shadow-md">
+        <p class="text-center pt-24">Google Maps Placeholder</p>
+    </div>
+
+    <script>
+        // Additional JavaScript if needed
+    </script>
+</body>
+</html>

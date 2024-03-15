@@ -48,4 +48,5 @@ public class ApplicationConfig {
 	    return boardTemplateResolver;
 	}
 	
+	
 }
