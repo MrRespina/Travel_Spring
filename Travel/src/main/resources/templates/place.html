@@ -56,22 +56,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="#" class="text-lg font-semibold">Travel Planner</a>
-                    </div>
                 </div>
                 <div class="flex items-center">
                     <div class="flex space-x-4">
-                        <!-- Search bar -->
-                        <div class="relative">
-                            <input type="text" class="h-10 w-56 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search destinations...">
-                            <div class="absolute top-2 right-2">
-                                <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
-                            </div>
-                        </div>
-                        <!-- Links -->
-                        <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Point Page</a>
-                        <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Search Page</a>
                     </div>
                 </div>
             </div>
@@ -81,19 +68,19 @@
     <!-- Main Content -->
     <div class="flex flex-col md:flex-row">
         <!-- Steps Sidebar -->
-        <div class="w-full md:w-1/4 bg-white p-4">
+        <div class="w-full md:w-1/4 bg-white p-4" style="width:180px;">
             <div class="flex flex-col space-y-2">
             	
-	                <a href="http://localhost:3001/" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">돌아가기</a>
+	                <a href="http://localhost:3000/node/search" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded" style="width: 150px;">돌아가기</a>
 	                
 	                <input type="hidden" name="place" value="place">
-	                <a th:href="@{/place/startLocation(id=${id}, structs=${struct})}" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">장소 선택</a>
+	                <a th:href="@{/place/startLocation(id=${id}, structs=${struct})}" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded" style="width: 150px;">장소 선택</a>
 	                
 	                <input type="hidden" name="lodging" value="lodging">
-	                <a th:href="@{/place/startLodging(id=${id}, structs=${struct})}" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">숙소 선택</a>
+	                <a th:href="@{/place/startLodging(id=${id}, structs=${struct})}" class="p-2 bg-gray-200 text-gray-700 font-semibold rounded" style="width:150px;">숙소 선택</a>
 	                
 	                <input type="hidden" name="convenience" value="convenience">
-                	<a th:href="@{/place/startConvenience(id=${id}, structs=${struct})}"  class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">편의시설 선택</a>
+                	<a th:href="@{/place/startConvenience(id=${id}, structs=${struct})}"  class="p-2 bg-gray-200 text-gray-700 font-semibold rounded" style="width: 150px;">편의시설 선택</a>
             </div>
         </div>
 
@@ -107,7 +94,15 @@
 						<div class="p-2 bg-gray-200 text-gray-700 font-semibold rounded">
 							<input type="hidden" name="struct" th:value="${struct}">
 							<input type="text" name="placename" id="placename">
-							<input type="submit" value="찾기">
+							<input type="submit" value="찾기"  
+							style="
+							width: 75px;
+							height: 40px;
+							text-align: center;
+							border: none;
+							color: white;
+							border-radius: 5px;
+						  ">
 						</div>
 					</form>
                 </div>
@@ -177,7 +172,7 @@
 					    <!-- 데이터 레코드를 반복하여 처리하는 반복문 -->
 					    <div th:each="data : ${testDBData}" class="data-row">
 					    	<!-- 데이터를 추가하기 위한 form 요소 -->
-					        <form action="/save/insert" method="GET">
+					        <form action="/save/insert" method="GET" style="width:400px;height:100px;">
 					        	<!-- 데이터 항목을 각각의 input 태그로 설정 -->
 					        	<input type="hidden" name="struct" th:value="${struct}">
 					        	<input type="hidden" name="id" th:value="${data.id}">
@@ -188,37 +183,49 @@
 					            <input type="hidden" name="address" th:value="${data.address}">
 					            <input type="hidden" name="latitude" th:value="${data.latitude}">
 					            <input type="hidden" name="longitude" th:value="${data.longitude}">
-					            
+					            <div style="width:100x;height:100px;float:left">
 					            <!-- 이미지 -->
 					            <div class="data-cell">
-					            	<img style="width:80px;height:80px;" th:src="${data.image}"
+					            	<img style="width:100px;height:100px;" th:src="${data.image}"
 					                                onerror="this.src='/errImg.jpg'; this.onerror=null;">
 					            </div>
+					            </div>
+					            
+					            
+					            <div style="width:290px;height:100px;float:right">
 					            
 					            <!-- 이름 -->
-					            <div class="data-cell">
+					            <div class="data-cell" style="font-weight: bold; color: #333;">
 					                <span th:text="${#strings.length(data.placename) &gt; 10} ? ${#strings.substring(data.placename, 0, 10)} + '...' : ${data.placename}"
 					                      th:title="${data.placename}"></span>
 					            </div>
 					            
 					            <!-- 카테고리 -->
-					            <div class="data-cell" th:text="${data.category}"></div>
+					            <div class="data-cell" th:text="${data.category}" style="font-weight: bold; color: #333;"></div>
 					            
 					            <!-- 주소 -->
-					            <div class="data-cell">
+					            <div class="data-cell" style="font-size: 13px; font-weight: bold; color: gray;">
 					                <span th:text="${#strings.length(data.address) &gt; 20} ? ${#strings.substring(data.address, 0, 20)} + '...' : ${data.address}"
 					                      th:title="${data.address}"></span>
 					            </div>
 					            
-					            <!-- 위도 -->
-					            <div class="data-cell" th:text="${data.latitude}"></div>
+					            	<button type="submit" class="bg-gray-500 text-white rounded hover:bg-blue-600"
+                  style="
+                    width: 75px;
+                    height: 30px;
+                    text-align: center;
+                    border: none;
+                    color: white;
+                    border-radius: 5px;
+                  ">저장</button>
 					            
-					            <!-- 경도 -->
-					            <div class="data-cell" th:text="${data.longitude}"></div>
+					            </div>
+				            
 					            
-					            <!-- 저장 버튼 -->
-					            <div class="data-cell"><button type="submit">저장</button></div>
 					      </form>
+					      &nbsp;&nbsp;
+					      
+					      	
 					  	</div>
 						</div>
                 </div>
@@ -231,7 +238,7 @@
 			    	<!-- 데이터 레코드를 반복하여 처리하는 반복문 -->
 			    	<div th:each="data : ${select}" class="data-row">
 			        <!-- 데이터를 삭제하기 위한 form 요소 -->
-			        <form action="/save/delete">
+			        <form action="/save/delete" style="width:400px;height:100px;">
 			            <!-- 데이터 항목을 각각의 input 태그로 설정 -->
 			            <input type="hidden" name="struct" th:value="${struct}">
 			            <input type="hidden" name="id" th:value="${data.id}">
@@ -242,34 +249,43 @@
 			            <input type="hidden" name="lat" th:value="${data.lat}">
 			            <input type="hidden" name="lng" th:value="${data.lng}">
 			            
+			            <div style="width:100x;height:100px;float:left">
 			            <!-- 이미지 -->
 			            <div class="data-item">
-			                <img style="width:80px;height:80px;" th:src="${data.photo}"
+			                <img style="width:100px;height:100px;" th:src="${data.photo}"
 			                    onerror="this.src='/errImg.jpg'; this.onerror=null;">
 			            </div>
+			            </div>
+			            
+			            <div style="width:290px;height:100px;float:right">
 			            
 			            <!-- 이름 -->
 			            <div class="data-item" th:text="${#strings.length(data.name) > 10} ? ${#strings.substring(data.name, 0, 10)} + '...' : ${data.name}" 
-			                th:title="${data.name}"></div>
+			                th:title="${data.name}" style="font-weight: bold; color: #333"></div>
 			            
 			            <!-- 카테고리 -->
-			            <div class="data-item" th:text="${data.category}"></div>
+			            <div class="data-item" th:text="${data.category}"style="font-weight: bold; color: #333"></div>
 			            
 			            <!-- 주소 -->
 			            <div class="data-item" th:text="${#strings.length(data.addr) > 20} ? ${#strings.substring(data.addr, 0, 20)} + '...' : ${data.addr}"
-			                th:title="${data.addr}"></div>
-			            
-			            <!-- 위도 -->
-			            <div class="data-item" th:text="${data.lat}"></div>
-			            
-			            <!-- 경도 -->
-			            <div class="data-item" th:text="${data.lng}"></div>
+			                th:title="${data.addr}" style="font-size: 13px; font-weight: bold; color: gray"></div>
 			            
 			            <!-- 삭제 버튼 -->
 			            <div class="data-item">
-			                <button type="submit">삭제</button>
+			                <button type="submit"
+			                class="bg-gray-500 text-white rounded hover:bg-blue-600"
+                  style="
+                    width: 75px;
+                    height: 30px;
+                    text-align: center;
+                    border: none;
+                    color: white;
+                    border-radius: 5px;
+                  ">삭제</button>
+                  </div>
 			            </div>
 			        </form>
+			        &nbsp;&nbsp;
 			    	</div>
 					</div>
                 </div>

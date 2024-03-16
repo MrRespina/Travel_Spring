@@ -24,13 +24,16 @@
 					<a id="" class="navbar-brand"></a>			
 				</li>
 				<li class="nav-item">
-					<a id="firstLink" class="navbar-brand" style="cursor:pointer;">게시판</a>			
+					<a id="firstLink" class="navbar-brand" style="cursor:pointer;">일정예약</a>			
 				</li>
 				<li class="nav-item">
-					<a id="secondLink" class="navbar-brand" style="cursor:pointer;">항공권예약</a>			
+					<a id="secondLink" class="navbar-brand" style="cursor:pointer;">게시판</a>			
 				</li>
 				<li class="nav-item">
-					<a id="thirdLink" class="navbar-brand" style="cursor:pointer;">여행가이드</a>			
+					<a id="thirdLink" class="navbar-brand" style="cursor:pointer;">항공권예약</a>			
+				</li>
+				<li class="nav-item">
+					<a id="forthLink" class="navbar-brand" style="cursor:pointer;">여행가이드</a>			
 				</li>
 			</ul>
 		</div>
@@ -75,6 +78,10 @@
         // 세 번째 링크 클릭 시
         $('#thirdLink').click(function(event) {
             $('.dragdiv').slick('slickGoTo', 2); // 2번째 슬라이드로 이동
+        });
+        
+        $('#forthLink').click(function(event) {
+            $('.dragdiv').slick('slickGoTo', 3); // 2번째 슬라이드로 이동
         });
 
         // 그 외의 링크에 대해서도 마찬가지로 처리
